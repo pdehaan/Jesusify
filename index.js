@@ -67,19 +67,3 @@ exports.jesusify = function (fileName, outputName) {
 							exports.printMessage, origWidth, origHeight);
 	});
 };
-
-console.log("Starting Clinton");
-exports.jesusify("images/clinton.jpeg", "clinton.jpeg");
-console.log("Finished Clinton");
-console.log("Starting Trump");
-exports.jesusify("images/trump.jpeg", "trump.jpeg");
-console.log("Finished Trump");
-console.log("Starting picture");
-exports.jesusify("images/picture.jpeg", "picture.jpeg");
-console.log("Finished picture");
-console.log("Starting ravens");
-exports.jesusify("images/ravens.jpeg", "ravens.jpeg");
-console.log("Finished ravens");
-console.log("Starting Martin Luther");
-exports.jesusify("images/martinLuther.jpeg", "martinLuther.jpeg");
-console.log("Finished Martin Luther");

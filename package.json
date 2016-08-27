@@ -1,10 +1,10 @@
 {
   "name": "christify",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Takes as input the name of a picture. Outputs that picture with a picture of Jesus Christ and one of His quotes overtop of it.",
   "main": "index.js",
   "scripts": {
-    "test": "node index.js"
+    "test": "node test.js"
   },
   "repository": {
     "type": "git",
