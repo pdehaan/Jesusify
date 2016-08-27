@@ -1,7 +1,12 @@
 var jesusify = require('./index.js');
 
 console.log("Converting first picture.");
-jesusify.jesusify("images/martinLuther.jpeg", "martinLuther.jpeg", function (response) {
+jesusify.jesusify("images/martinLuther.jpeg", "martinLuther.jpeg", function (err, response) {
+	if (err) {
+		console.error("Received error: \"" + err + "\"");
+		return;
+	}
+
 	console.log("Writing picture");
 	response.write("martinLuther2.jpeg");
 	console.log("Done writing picture. Open martinLuther.jpeg when this finishes");

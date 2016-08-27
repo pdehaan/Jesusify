@@ -5,7 +5,6 @@ exports.FONT_SANS_64_RED = path.join(__dirname, "fonts/open-sans-64-red/open-san
 
 exports.printImage = function (destinationImage, inFileName, outFileName,
 								callbackFunction, origWidth, origHeight) {
-	console.log("Print image");
 	return jimp.read(inFileName).then(function (image) {
 		image.resize(destinationImage.bitmap.width >> 1,
 					destinationImage.bitmap.height >> 1);
@@ -17,12 +16,13 @@ exports.printImage = function (destinationImage, inFileName, outFileName,
 
 		return callbackFunction(outFileName, destinationImage, origWidth,
 						origHeight);
+	}).catch (function (err) {
+		return err + "";
 	});
 }
 
 exports.printMessage = function (outFileName, destinationImage,
 								origWidth, origHeight) {
-	console.log("Print message");
 	return jimp.loadFont(exports.FONT_SANS_64_RED).then(function (font) {
 		var width = destinationImage.bitmap.width;
 		var height = destinationImage.bitmap.height;
@@ -33,12 +33,15 @@ exports.printMessage = function (outFileName, destinationImage,
 		destinationImage.write(outFileName);
 
 		return destinationImage;
+	}).catch(function (err) {
+		return err + "";
 	});
 }
 
 exports.jesusify = function (fileName, outputName, callback) {
 	jimp.read(fileName).then(function (image) {
-		console.log("image");
+		var origWidth = image.bitmap.width;
+		var origHeight = image.bitmap.width;
 
 		//Output file name must be a string and must have a .jpeg extension.
 		if (outputName === undefined || outputName === null) {
@@ -51,10 +54,15 @@ exports.jesusify = function (fileName, outputName, callback) {
 			outputName += ".jpeg";
 		}
 
-		var origWidth = image.bitmap.width;
-		var origHeight = image.bitmap.width;
-
 		exports.printImage(image, path.join(__dirname, "images/jesus.png"), outputName,
-							exports.printMessage, origWidth, origHeight).then(callback);
+			exports.printMessage, origWidth, origHeight).then(function (res) {
+				if (typeof res === "string") {
+					callback(res, null);
+				}
+				else {
+					callback(null, res);
+				}
+			}
+		);
 	});
 };
