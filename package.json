@@ -1,5 +1,5 @@
 {
-  "name": "christify",
+  "name": "jesusify",
   "version": "0.0.1",
   "description": "Takes as input the name of a picture. Outputs that picture with a picture of Jesus Christ and one of His quotes overtop of it.",
   "main": "index.js",

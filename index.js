@@ -1,8 +1,11 @@
-exports.jimp = require("jimp");
+var jimp = require("jimp");
+var path = require('path');
+
+exports.FONT_SANS_64_RED = path.join(__dirname, "fonts/open-sans-64-red/open-sans-64-red.fnt");
 
 exports.printImage = function (destinationImage, inFileName, outFileName,
 								callbackFunction, origWidth, origHeight) {
-	exports.jimp.read(inFileName, function (error1, image) {
+	jimp.read(inFileName, function (error1, image) {
 		if (error1) {
 			callbackFunction(error1, outFileName, destinationImage);
 			return;
@@ -28,8 +31,7 @@ exports.printMessage = function (error, outFileName, destinationImage,
 		return;
 	}
 
-	exports.jimp.loadFont(
-	'fonts/open-sans-64-red/open-sans-64-red.fnt').then(function (font) {
+	jimp.loadFont(exports.FONT_SANS_64_RED).then(function (font) {
 		var width = destinationImage.bitmap.width;
 		var height = destinationImage.bitmap.height;
 		var message = "Jesus loves you!";
@@ -43,7 +45,7 @@ exports.printMessage = function (error, outFileName, destinationImage,
 }
 
 exports.jesusify = function (fileName, outputName) {
-	exports.jimp.read(fileName, function (error1, image) {
+	jimp.read(fileName, function (error1, image) {
 		if (error1) {
 			console.error("Received error: \"" + error1 + "\"");
 			return;
@@ -63,7 +65,7 @@ exports.jesusify = function (fileName, outputName) {
 		var origWidth = image.bitmap.width;
 		var origHeight = image.bitmap.width;
 
-		exports.printImage(image, "images/jesus.png", outputName,
+		exports.printImage(image, path.join(__dirname, "images/jesus.png"), outputName,
 							exports.printMessage, origWidth, origHeight);
 	});
 };
