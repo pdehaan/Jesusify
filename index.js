@@ -1,12 +1,12 @@
 exports.jimp = require("jimp");
 
 exports.quotes = [
-"I have told you these things, so that in me you mave have peace. In this world you will have trouble. But take heart! I have overcome the world. --John 16:33 (NIV)",
-"If the world hates you, understand that it hated Me first. --John 15:18 (NIV)",
-"Ask and it will be given to you; seek and you will find; knock and the door will be opened to you. --Matthew 7:7 (NIV)",
-"You see, at just the right time, when we were still powerless, Christ died for the ungodly. --Romans 5:6 (NIV)",
-"The God of peace will soon crush Satan under your feet. The grace of our Lord Jesus Christ be with you. --Romans 16:20 (NIV)",
-"The grace of our Lord Jesus Christ by with you all. Amen. --Revelation 22:21 (NIV)"
+	"I have told you these things, so that in me you mave have peace. In this world you will have trouble. But take heart! I have overcome the world. --John 16:33 (NIV)",
+	"If the world hates you, understand that it hated Me first. --John 15:18 (NIV)",
+	"Ask and it will be given to you; seek and you will find; knock and the door will be opened to you. --Matthew 7:7 (NIV)",
+	"You see, at just the right time, when we were still powerless, Christ died for the ungodly. --Romans 5:6 (NIV)",
+	"The God of peace will soon crush Satan under your feet. The grace of our Lord Jesus Christ be with you. --Romans 16:20 (NIV)",
+	"The grace of our Lord Jesus Christ by with you all. Amen. --Revelation 22:21 (KJV)"
 ];
 
 exports.printImage = function (destinationImage, inFileName, outFileName,
