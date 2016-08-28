@@ -3,6 +3,7 @@ and the words "Jesus loves you" overtop of it. It also allows one to pass a call
 parameters: an error (null if no errors occurred) and a JIMP image object (null if an error occurred). 
 Here is an example of its use:
 
+~~~~
 var jesusify = require('jesusify');
 
 //Jesusifies the file at "./picture.jpeg" and writes it to "./jesusified_picture.jpeg".
@@ -15,3 +16,4 @@ jesusify.jesusify("./picture.jpeg", "./jesusified_picture.jpeg", function (err, 
 
 	image.write("profile_picture.png");
 });
+~~~~
