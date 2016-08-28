@@ -1,0 +1,17 @@
+Jesusify is a module that takes the path to an image and outputs that same image with a picture of Jesus Christ 
+and the words "Jesus loves you" overtop of it. It also allows one to pass a callback function that takes two
+parameters: an error (null if no errors occurred) and a JIMP image object (null if an error occurred). 
+Here is an example of its use:
+
+var jesusify = require('jesusify');
+
+//Jesusifies the file at "./picture.jpeg" and writes it to "./jesusified_picture.jpeg".
+//Then, writes the jesusified image to "./profile_picture.png" if there was no error.
+jesusify.jesusify("./picture.jpeg", "./jesusified_picture.jpeg", function (err, image) {
+	if (err) {
+		console.error("Received error: \"" + err + "\"");
+		return;
+	}
+
+	image.write("profile_picture.png");
+});
