@@ -43,15 +43,12 @@ exports.jesusify = function (fileName, outputName, callback) {
 		var origWidth = image.bitmap.width;
 		var origHeight = image.bitmap.width;
 
-		//Output file name must be a string and must have a .jpeg extension.
+		//Output file name must be a string
 		if (outputName === undefined || outputName === null) {
 			outputName = "out.jpeg";
 		}
 		else if (typeof outputName !== "string") {
 			outputName = "out.jpeg";
-		}
-		else if (!outputName.endsWith(".jpeg") && !outputName.endsWith(".jpg")) {
-			outputName += ".jpeg";
 		}
 
 		exports.printImage(image, path.join(__dirname, "images/jesus.png"), outputName,
