@@ -1,6 +1,6 @@
 {
   "name": "jesusify",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Takes as input the name of a picture. Outputs that picture with a picture of Jesus Christ and 'Jesus loves you!' overtop of it.",
   "main": "index.js",
   "scripts": {
