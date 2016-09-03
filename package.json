@@ -20,7 +20,7 @@
     "bible"
   ],
   "author": "Andrew Zuelsdorf",
-  "license": "GPL-3.0",
+  "license": "MIT",
   "dependencies": {
     "jimp": "^0.2.27",
     "mmmagic": "^0.4.5"
