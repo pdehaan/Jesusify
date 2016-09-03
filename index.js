@@ -47,7 +47,6 @@ exports.jesusify = function (fileName, outputName, callback) {
 			callback(err, null);
 		}
 		else if (results.startsWith("image/")) {
-			console.log(results);
  			jimp.read(fileName).then(function (image) {
 	 			var origWidth = image.bitmap.width;
 				var origHeight = image.bitmap.width;
