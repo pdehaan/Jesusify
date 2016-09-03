@@ -1,5 +1,6 @@
 var jimp = require("jimp");
 var path = require('path');
+var mmmagic = require('mmmagic');
 
 exports.FONT_SANS_64_RED = path.join(__dirname, "fonts/open-sans-64-red/open-sans-64-red.fnt");
 
@@ -39,27 +40,40 @@ exports.printMessage = function (outFileName, destinationImage,
 }
 
 exports.jesusify = function (fileName, outputName, callback) {
-	jimp.read(fileName).then(function (image) {
-		var origWidth = image.bitmap.width;
-		var origHeight = image.bitmap.width;
+	var magic = new mmmagic.Magic(mmmagic.MAGIC_MIME_TYPE);
 
-		//Output file name must be a string
-		if (outputName === undefined || outputName === null) {
-			outputName = "out.jpeg";
+	magic.detectFile(fileName, function (err, results) {
+		if (err) {
+			callback(err, null);
 		}
-		else if (typeof outputName !== "string") {
-			outputName = "out.jpeg";
-		}
+		else if (results.startsWith("image/")) {
+			console.log(results);
+ 			jimp.read(fileName).then(function (image) {
+	 			var origWidth = image.bitmap.width;
+				var origHeight = image.bitmap.width;
 
-		exports.printImage(image, path.join(__dirname, "images/jesus.png"), outputName,
-			exports.printMessage, origWidth, origHeight).then(function (res) {
-				if (typeof res === "string") {
-					callback(res, null);
+				//Output file name must be a string
+				if (outputName === undefined || outputName === null) {
+					outputName = "out.jpeg";
 				}
-				else {
-					callback(null, res);
+				else if (typeof outputName !== "string") {
+					outputName = "out.jpeg";
 				}
-			}
-		);
+
+				exports.printImage(image, path.join(__dirname, "images/jesus.png"), outputName,
+					exports.printMessage, origWidth, origHeight).then(function (res) {
+						if (typeof res === "string") {
+							callback(res, null);
+						}
+						else {
+							callback(null, res);
+						}
+					}
+				);
+			});
+		}
+		else {
+			callback("\"" + fileName + "\" is not an image file.", err);
+		}
 	});
 };
