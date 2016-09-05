@@ -3,6 +3,7 @@ var path = require('path');
 var mmmagic = require('mmmagic');
 
 exports.FONT_SANS_64_RED = path.join(__dirname, "fonts/open-sans-64-red/open-sans-64-red.fnt");
+exports.TEXT_IMAGE_NAME = path.join(__dirname, "images/text.png");
 
 exports.printImage = function (destinationImage, inFileName, outFileName,
 								callbackFunction, origWidth, origHeight) {
@@ -27,13 +28,13 @@ exports.printMessage = function (outFileName, destinationImage,
 	return jimp.loadFont(exports.FONT_SANS_64_RED).then(function (font) {
 		var width = destinationImage.bitmap.width;
 		var height = destinationImage.bitmap.height;
-		var message = "Jesus loves you!";
 
-		destinationImage.print(font, width >> 3, height >> 3, message,
-								width - width >> 2);
-		destinationImage.write(outFileName);
-
-		return destinationImage;
+		return jimp.read(exports.TEXT_IMAGE_NAME).then(function (textImage) {
+			textImage.resize(width, Math.min(textImage.bitmap.height, height));
+			destinationImage.composite(textImage, 10, 10);
+			destinationImage.write(outFileName);
+			return destinationImage;
+		});
 	}).catch(function (err) {
 		return err + "";
 	});
@@ -59,7 +60,7 @@ exports.jesusify = function (fileName, outputName, callback) {
 					outputName = "out.jpeg";
 				}
 
-				exports.printImage(image, path.join(__dirname, "images/jesus.png"), outputName,
+				exports.printImage(image, path.join(__dirname, "images/jesus_transparent.png"), outputName,
 					exports.printMessage, origWidth, origHeight).then(function (res) {
 						if (typeof res === "string") {
 							callback(res, null);

@@ -49,3 +49,12 @@ jesusify.jesusify(path.join(__dirname, "images/martinLuther.jpeg"),
 					" same sha1sum and look the same.");
 	}
 );
+
+jesusify.jesusify(path.join(__dirname, "images/johnLewis.jpeg"),
+				path.join(__dirname, "johnLewis.jpeg"),
+	function (err, image) {
+		if (err) {
+			console.error("Received error: \"" + err + "\"");
+		}
+	}
+);
